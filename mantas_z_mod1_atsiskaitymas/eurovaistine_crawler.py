@@ -6,3 +6,5 @@ def crawl_eurovaistine(url: str):
     text = response.text
     tree = HTML(text)
 
+    products = tree.xpath(".//div[contains(@class, 'content')]")
+
