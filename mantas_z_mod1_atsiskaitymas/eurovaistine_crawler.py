@@ -12,10 +12,11 @@ def crawl_eurovaistine():
     text = response.text
     tree = HTML(text)
 
-    products = tree.xpath(".//div[contains(@class, 'content')]")
+    products = tree.xpath("//div[contains(@class, 'productsListWrapper__cardsContainer')]")
 
     return [{
-        "title": product.xpath(".//div[contains(@class, 'title']/text()")[0].strip(),
-        "price": product.xpath(".//div[contains(@class, 'newProductPrice')]/text()")[0].strip()
+        "title": product.xpath(".//div[contains(@class, 'title')]/span/text()")[0].strip(),
+        "price": product.xpath(".//div[contains(@class, 'newProductPrice')]/span/text()")[0].strip()
     } for product in products][:4]
 
+print(crawl_eurovaistine())
