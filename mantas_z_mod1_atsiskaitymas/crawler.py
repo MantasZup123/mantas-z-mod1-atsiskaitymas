@@ -16,6 +16,12 @@ def crawl(time_limit: int = 60, url: str, data_format: str = "json"):
     if time.time() - start_time > time_limit:
         raise TimeoutError("Funkcijos veikimo laikas baigėsi.")
 
+    if data_format == "json":
+        return data
+    elif data_format == "dict":
+        return data
+    else:
+        raise ValueError("Toks formatamas yra nepalaikomas.")
 
 
 
