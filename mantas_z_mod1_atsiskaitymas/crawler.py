@@ -11,7 +11,13 @@ def crawl(time_limit: int = 60, url: str, data_format: str = "json"):
     elif url == "benu":
         data = crawl_benu()
     else:
-        raise ValueError("Tokios svetainės nucrawlinti negalime")
+        raise ValueError("Neturime prieigos prie šios svetainės.")
+
+    if time.time() - start_time > time_limit:
+        raise TimeoutError("Funkcijos veikimo laikas baigėsi.")
+
+
+
 
 
 
