@@ -1,7 +1,7 @@
 import requests
 from lxml.etree import HTML
 
-def crawl_eurovaistine(source):
+def crawl_eurovaistine():
     """
     Function reads data from eurovaistine website
     :param source: Websites URL

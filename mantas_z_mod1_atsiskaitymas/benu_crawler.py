@@ -1,7 +1,7 @@
 import requests
 from lxml.etree import HTML
 
-def crawl_benu(source):
+def crawl_benu():
     """
     Function reads data from benu website
     :param source: Websites URL
