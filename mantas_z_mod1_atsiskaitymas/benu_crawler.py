@@ -12,9 +12,11 @@ def crawl_benu():
     text = response.text
     tree = HTML(text)
 
-    products = tree.xpath(".//div[contains(@class, 'bnProductCard')]")
+    titles = tree.xpath("//h2[contains(@class, 'h3')]/text()")
+    prices = tree.xpath("//span[contains(@class, 'money_amount')]/text()")
 
-    return [{
-        "title": tree.xpath(".//div[contains(@class, 'bnProductCard__title')]/text()")[0].strip(),
-        "price": tree.xpath(".//div[contains(@class, 'money_amount')]/text()")[0].strip(),
-    } for product in products][:4]
+    return {"titles": titles, "prices": prices}
+
+print(crawl_benu())
+
+
