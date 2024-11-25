@@ -2,8 +2,8 @@ import requests
 import json
 import csv
 import time
-from eurovaistine_crawler import crawl_eurovaistine
-from benu_crawler import crawl_benu
+from mantas_z_mod1_atsiskaitymas.gintarine_crawler import crawl_gintarine
+from mantas_z_mod1_atsiskaitymas.benu_crawler import crawl_benu
 
 def crawl(source: str, time_limit: int = 60, data_format: str = "json"):
     """
@@ -16,9 +16,9 @@ def crawl(source: str, time_limit: int = 60, data_format: str = "json"):
     """
     start_time = time.time()
 
-    if source == "eurovaistine":
-        data = crawl_eurovaistine()
-    elif source == "benu":
+    if "gintarine" in source:
+        data = crawl_gintarine()
+    elif "benu" in source:
         data = crawl_benu()
     else:
         raise ValueError("Neturime prieigos prie šios svetainės.")
@@ -27,16 +27,16 @@ def crawl(source: str, time_limit: int = 60, data_format: str = "json"):
         raise TimeoutError("Funkcijos veikimo laikas baigėsi.")
 
     if data_format == "json":
-        data_json = json.loads(data)
+        data_json = json.dumps(data)
         return data_json
     elif data_format == "csv":
         with open("data_csv.csv", "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["Title", "Price"])
-            for title, price in data["titles"], data["prices"]:
+            for title, price in data["Title"], data["Price"]:
                 writer.writerow([title, price])
         return "Duomenys išsaugoti į data_csv.csv failą"
-    elif data_format == "dict":
+    elif data_format == "list":
         return data
     else:
         raise ValueError("Toks formatamas yra nepalaikomas.")
