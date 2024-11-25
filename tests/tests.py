@@ -20,9 +20,14 @@ class TestCrawl(unittest.TestCase):
 
     def test_timeout(self):
         source = "gintarine"
-        result = crawl(source, time_limit=1)
-        self.assertTrue(result.startswith("Įvyko klaida"))
+        with self.assertRaises(TimeoutError):
+            crawl(source, time_limit=1)
 
+
+    def test_csv_output(self):
+        source = "gintarine"
+        result = crawl(source, data_format="csv")
+        self.assertEqual(result, "CSV failas 'data_csv.csv' sukurtas sėkmingai")
 
 if __name__ == "__main__":
     unittest.main()
