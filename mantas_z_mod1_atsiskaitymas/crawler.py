@@ -29,12 +29,11 @@ def crawl(source: str, time_limit: int = 60, data_format: str = "json"):
     if data_format == "json":
         return json.dumps(data, indent=4, ensure_ascii=False)
     elif data_format == "csv":
-        with open("data_csv.csv", "w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["Title", "Price"])
-            for title, price in zip(data["Title"], data["Price"]):
-                writer.writerow([title, price])
-        return "Duomenys išsaugoti į data_csv.csv failą"
+        with open("data_csv.csv", "w", encoding="utf-8", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=["Title", "Price"])
+            writer.writeheader()
+            writer.writerow()
+        print("CSV failas 'data_csv.csv' sukurtas sėkmingai")
     elif data_format == "list":
         return data
     else:
