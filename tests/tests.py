@@ -11,6 +11,7 @@ class TestCrawl(unittest.TestCase):
     def test_crawl_benu(self):
         source = "benu"
         result = crawl(source, data_format="list")
+        self.assertEqual(list(result[0].keys()), ["Title", "Price"])
 
 
 
