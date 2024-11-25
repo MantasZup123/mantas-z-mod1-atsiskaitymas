@@ -27,13 +27,12 @@ def crawl(source: str, time_limit: int = 60, data_format: str = "json"):
         raise TimeoutError("Funkcijos veikimo laikas baigėsi.")
 
     if data_format == "json":
-        data_json = json.dumps(data)
-        return data_json
+        return json.dumps(data, indent=4, ensure_ascii=False)
     elif data_format == "csv":
         with open("data_csv.csv", "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["Title", "Price"])
-            for title, price in data["Title"], data["Price"]:
+            for title, price in zip(data["Title"], data["Price"]):
                 writer.writerow([title, price])
         return "Duomenys išsaugoti į data_csv.csv failą"
     elif data_format == "list":
