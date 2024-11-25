@@ -23,7 +23,6 @@ class TestCrawl(unittest.TestCase):
         with self.assertRaises(TimeoutError):
             crawl(source, time_limit=1)
 
-
     def test_csv_output(self):
         source = "gintarine"
         result = crawl(source, data_format="csv")

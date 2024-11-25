@@ -33,7 +33,7 @@ def crawl(source: str, time_limit: int = 60, data_format: str = "json"):
             writer = csv.DictWriter(file, fieldnames=["Title", "Price"])
             writer.writeheader()
             writer.writerows(data)
-        print("CSV failas 'data_csv.csv' sukurtas sėkmingai")
+        return "CSV failas 'data_csv.csv' sukurtas sėkmingai"
     elif data_format == "list":
         return data
     else:
