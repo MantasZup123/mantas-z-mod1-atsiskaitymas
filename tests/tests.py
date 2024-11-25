@@ -18,5 +18,11 @@ class TestCrawl(unittest.TestCase):
         with self.assertRaises(ValueError):
             crawl(source, data_format="list")
 
+    def test_timeout(self):
+        source = "gintarine"
+        result = crawl(source, time_limit=1)
+        self.assertTrue(result.startswith("Įvyko klaida"))
+
+
 if __name__ == "__main__":
     unittest.main()
