@@ -13,7 +13,10 @@ class TestCrawl(unittest.TestCase):
         result = crawl(source, data_format="list")
         self.assertEqual(list(result[0].keys()), ["Title", "Price"])
 
-
+    def test_invalid_url(self):
+        source = "lrytas"
+        with self.assertRaises(ValueError):
+            crawl(source, data_format="list")
 
 if __name__ == "__main__":
     unittest.main()
