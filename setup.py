@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="mantas_l_mod1_atsiskaitymas",
+    name="mantas_z_mod1_atsiskaitymas",
     version="0.1.0",
     author="Mantas",
     author_email="",
